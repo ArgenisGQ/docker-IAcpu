@@ -13,11 +13,12 @@ services:
       - OLLAMA_KEEP_ALIVE=24h
     networks:
       - ai_network
+    entrypoint: ["/bin/sh", "-c"]
     command: >
-      sh -c "ollama serve & 
-             sleep 5 && 
-             ollama pull llama3:8b && 
-             tail -f /dev/null"
+      "ollama serve &
+       sleep 5 &&
+       ollama pull llama3:8b &&
+       tail -f /dev/null"
 
   fastapi-gateway:
     build: ./fastapi
