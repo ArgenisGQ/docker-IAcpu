@@ -1,0 +1,46 @@
+# --- Python ---
+__pycache__/
+*.py[cod]
+*.so
+*.egg
+*.egg-info/
+dist/
+build/
+.eggs/
+*.log
+
+# --- Virtual environments ---
+venv/
+.env/
+.venv/
+ENV/
+
+# --- Jupyter ---
+.ipynb_checkpoints/
+*.ipynb
+
+# --- Docker ---
+*.pid
+*.seed
+*.pid.lock
+docker-compose.override.yml
+
+# --- System ---
+.DS_Store
+Thumbs.db
+
+# --- HuggingFace / Model caches ---
+ollama_data/
+openwebui_config/
+openwebui_config/cache/
+huggingface/
+transformers_cache/
+datasets/
+
+# --- VSCode / IDE ---
+.vscode/
+.idea/
+
+# --- Otros ---
+*.sqlite3
+*.db

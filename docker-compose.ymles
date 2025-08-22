@@ -1,0 +1,37 @@
+version: "3.9"
+
+services:
+  ollama:
+    image: ollama/ollama:latest
+    container_name: ollama
+    restart: unless-stopped
+    ports:
+      - "11434:11434"
+    volumes:
+      - ./ollama_data:/root/.ollama
+    environment:
+      - OLLAMA_KEEP_ALIVE=24h
+    command: >
+      sh -c "
+      ollama pull llama2:8b &&
+      ollama serve
+      "
+    networks:
+      - ai_network
+
+  fastapi-gateway:
+    build: ./fastapi
+    container_name: fastapi-gateway
+    restart: unless-stopped
+    ports:
+      - "8000:8000"
+    environment:
+      - OLLAMA_URL=http://ollama:11434
+    depends_on:
+      - ollama
+    networks:
+      - ai_network
+
+networks:
+  ai_network:
+    driver: bridge
